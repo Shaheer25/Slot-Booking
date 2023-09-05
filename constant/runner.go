@@ -1,8 +1,10 @@
 package constant
 
 import (
+	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/Shaheer25/go-auth/routes"
 	"github.com/gin-gonic/gin"
@@ -41,6 +43,13 @@ func CodeRunner() {
 		})
 	})
 
+	defer TrackTime(time.Now())
+
+	time.Sleep(time.Second)
 	router.Run(":" + port)
 
+}
+func TrackTime(t time.Time) {
+	elapsed := time.Since(t)
+	fmt.Printf("Execution completed in %v\n", elapsed)
 }
